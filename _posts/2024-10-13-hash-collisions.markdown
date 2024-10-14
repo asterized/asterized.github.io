@@ -132,3 +132,9 @@ build_indices_generic(PyDictKeysObject *keys, PyDictKeyEntry *ep, Py_ssize_t n)
 }
 {% endhighlight %}
 This repeatedly perturbs `i` until it reaches an empty memory address. When `hash & mask` does not collide with any other elements, it never goes into the `for` loop, thus saving a lot of computation, and why it is slower than an initialization without any collisions. It is also faster than looking up a key as it just needs to reach a region of memory without any keys "occupying" it, thus being faster than a lookup relatively to its collision-less counterparts.
+
+## Conclusion
+Will this ever actually affect *your* code? Maybe. *Most* of the time, you won't have a hash table with 1,000 collisions. However, if you're handling tons of data in a single database (terrible idea, probably, i know nothing about db design), you're bound to run into hash collisions, or, even worse, could be attacked by people sending keys that are intentionally meant to collide. How should you solve this? Go ask a professional.
+
+## Disclaimer
+The info in this blog post has tried to be accurate, yet there may be some issues and mistakes. If you find any, mention me on Mastodon at somehybrid@hachyderm.io and I might have enough motivation to actually fix any of it.
