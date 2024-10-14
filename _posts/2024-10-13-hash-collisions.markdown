@@ -6,7 +6,7 @@ categories: jekyll update
 katex: true
 ---
 
-I was overanalyzing two sum (as one does), trying to figure out its *actual* time complexity (\$O(n log m)\$ where `m` is the largest number in `n`, as opposed to the liars who say its \$O(n)\$), when I stumbled upon [this comment](https://github.com/python/cpython/blob/ce740d46246b28bb675ba9d62214b59be9b8411e/Python/pyhash.c#L31-L32) in the CPython source code:
+I was overanalyzing two sum (as one does), trying to figure out its *actual* time complexity (\$O(n \log m)\$ where `m` is the largest number in `n`, as opposed to the liars who say its \$O(n)\$), when I stumbled upon [this comment](https://github.com/python/cpython/blob/ce740d46246b28bb675ba9d62214b59be9b8411e/Python/pyhash.c#L31-L32) in the CPython source code:
 {% highlight c %}
 /* For numeric types, the hash of a number x is based on the reduction
    of x modulo the prime P = 2**_PyHASH_BITS - 1.
