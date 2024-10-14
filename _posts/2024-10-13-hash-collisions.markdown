@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "CPython hash table collisions"
-date:   2024-10-13 14:21:46 +0700
+date:   2024-10-14 13:20:44 +0000
 categories: jekyll update
 katex: true
 ---
