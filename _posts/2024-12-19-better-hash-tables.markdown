@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "More collision-resistant hash tables"
-date:   2024-10-14 13:20:44 +0000
+date:   2024-12-19 10:18:49 +0000
 categories: jekyll update
 katex: true
 ---
