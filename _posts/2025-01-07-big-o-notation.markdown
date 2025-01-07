@@ -20,7 +20,7 @@ A set is a collection of things, usually mathematical objects like numbers, sets
 Denoting an element $$x$$ in a set $$S$$ can be denoted as $$x \in S$$.
 
 ### Functions
-A function is a mathematical object similar to pure functions in computer science, that can return any mathematical object. A function is often denoted as $$f(x)$$ or $$g(x)$$, where $$x$$ can be any mathematical object.
+A function is a mathematical object similar to pure functions in computer science, that define a mapping from its "domain" (a set of possible inputs) to its "codomain" (a set ofpossibleoutputs).
 
 ## Back to big O
 Big O notation describes how a function grows asymptotically. In simpler terms, it describes the approximate rate that a function $$f(n)$$ grows with $$n$$. In computer science, $$n$$ is usually used as the *size* of the input. Although big O notation has been defined before, Knuth [\[1\]](#knuth) redefined the functions $$O(f(n))$$, $$\Omega(f(n))$$ and $$\Theta(f(n))$$ as:
@@ -33,7 +33,7 @@ Big O notation describes how a function grows asymptotically. In simpler terms, 
 
 Woah, what does that mean? Backtracking a bit, let's focus specifically on this line:
 
-> $$O(f(n))$$ denotes the set of all $$g(n)$$ such that there exist positive constants $$C$$ and $$n_O$$ with $$\lvert g(n) \le Cf(n) \rvert$$ for all $$n \ge n_O$$.
+> $$O(f(n))$$ denotes the set of all $$g(n)$$ such that there exist positive constants $$C$$ and $$n_O$$ with $$\lvert g(n) \rvert \le Cf(n)$$ for all $$n \ge n_O$$.
 
 Here, Knuth is defining $$O(f(n))$$ as a *function* whose *domain*, its input, is an expression ($$f(n)$$). Note that $$n$$ here is an indeterminate, similar to the $$x$$es in polynomials and other expressions, except $$f(n)$$ does not necessarily need to be a polynomial (as an example, $$\sqrt{n}$$ isn't a polynomial).
 
@@ -52,19 +52,19 @@ From here, we can make a clearer definition of big O notation and the other func
 
 > Let $$k$$ be a non-zero integer constant.
 
-> $$O(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a lower bound of $$k \cdot f(n)$$
+> $$O(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a lower bound of $$k \cdot f(n)$$ and $$n_O \le n$$
 
-> $$\Omega(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a upper bound of $$k \cdot f(n)$$
+> $$\Omega(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a upper bound of $$k \cdot f(n)$$ and $$n_O \le n$$
 
-> $$\Theta(f(n))$$ is the set of expressions $$g(n)$$ such that, given two constant factors $$k$$ and $$k'$$, $$f(n)$$ is between $$k \cdot g(n)$$ and $$k' \cdot g(n)$$.
+> $$\Theta(f(n))$$ is the set of expressions $$g(n)$$ such that, given two constant factors $$k$$ and $$k'$$, $$f(n)$$ is between $$k \cdot g(n)$$ and $$k' \cdot g(n)$$ and $$n_O \le n$$
 
-Written more formally, you can define this with limits as [\[2\]](#leighton):
+An alternative definition written with limits [\[2\]](#leighton) is:
 
-$$O(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \le k\}$$
+$$O(f(n)) = \{g(n) \mid \limsup\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} \le k\}$$
 
-$$\Omega(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \ge k\}$$
+$$\Omega(f(n)) = \{g(n) \mid \liminf\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} \ge k\}$$
 
-$$\Theta(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = k\}$$
+$$\Theta(f(n)) = \{g(n) \mid \lim\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} = k\}$$
 
 where $$k$$ is defined as the constant factor in the previous definitions.
 
@@ -81,7 +81,7 @@ def multiply(a: int, b: int):
     return out
 {% endhighlight %}
 
-At first glance, ignoring the additional complexity from the addition and resizing from the bigint logic, the running time seems to grow linearly as $$b$$ grows, or $$O(n)$$. However, in analysis of algorithms, the indeterminate represents the size, not the value. Usually, the size is defined in bits, $$n = log_2(b)$$, therefore the time complexity is $$O(2^n)$$.
+At first glance, ignoring the additional complexity from the addition and resizing from the bigint logic, the running time seems to grow linearly as $$b$$ grows, or $$T(n) = O(n)$$. However, in analysis of algorithms, the indeterminate represents the size, not the value. Usually, the size is defined in the size in bits of the input, $$n = log_2(b)$$, therefore the time complexity is $$T(n) = O(2^n)$$.
 
 Another thing to note is that although it determines the asymptotic complexity of an algorithm, a "better" asymptotic complexity does not necessarily mean an increase in speed. Asymptotically optimal algorithms exist that are practically unlikely to be used, called [galactic algorithms](https://en.wikipedia.org/wiki/Galactic_algorithm).
 
@@ -107,3 +107,8 @@ T. Leighton, R. Rubenfeld, The Asymptotic Cheat Sheet [PDF document]. Available:
 The info in this blog post has tried to be accurate, yet there may be some issues and mistakes. If you find any, mention me on Mastodon at somehybrid@hachyderm.io and I might have enough motivation to actually fix any of it.
 
 Also, I probably messed up some of the math here. Take everything with lots of seasonings.
+
+## Changelog (woops me error)
+push first, proofread after
+
+2025-01-07 (can you really believe its 2025? almost wrote 2022): fix markup errors, fix wording in big O in CS, make definiitions clearer, fix typos, fix definition of limits.
