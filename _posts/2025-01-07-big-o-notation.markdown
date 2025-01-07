@@ -64,7 +64,7 @@ $$O(f(n)) = \{g(n) \mid \limsup\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} 
 
 $$\Omega(f(n)) = \{g(n) \mid \liminf\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} \ge k\}$$
 
-$$\Theta(f(n)) = \{g(n) \mid \lim\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} = k\}$$
+$$\Theta(f(n)) = O(f(n)) \cap \Omega(f(n))$$
 
 where $$k$$ is defined as the constant factor in the previous definitions.
 
