@@ -20,7 +20,7 @@ A set is a collection of things, usually mathematical objects like numbers, sets
 Denoting an element $$x$$ in a set $$S$$ can be denoted as $$x \in S$$.
 
 ### Functions
-A function is a mathematical object similar to pure functions in computer science, that define a mapping from its "domain" (a set of possible inputs) to its "codomain" (a set ofpossibleoutputs).
+A function is a mathematical object similar to pure functions in computer science, that define a mapping from its "domain" (a set of possible inputs) to its "codomain" (a set of possible outputs).
 
 ## Back to big O
 Big O notation describes how a function grows asymptotically. In simpler terms, it describes the approximate rate that a function $$f(n)$$ grows with $$n$$. In computer science, $$n$$ is usually used as the *size* of the input. Although big O notation has been defined before, Knuth [\[1\]](#knuth) redefined the functions $$O(f(n))$$, $$\Omega(f(n))$$ and $$\Theta(f(n))$$ as:
@@ -112,3 +112,4 @@ Also, I probably messed up some of the math here. Take everything with lots of s
 push first, proofread after
 
 2025-01-07 (can you really believe its 2025? almost wrote 2022): fix markup errors, fix wording in big O in CS, make definiitions clearer, fix typos, fix definition of limits.
+2025-01-07 (again xd): fix typo (my space bar is painnnnnnn)
