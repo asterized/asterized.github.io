@@ -41,7 +41,7 @@ He defines the *codomain*, the output, as a set of expressions $$g(n)$$ that sat
 
 The constraint $$n \ge n_O$$ means that it is true for practical values of $$n$$, or above $$n_O$$.
 
-One thing to note is if, as an example, an algorithm grows at the speed of $$f(n) = O(n^3)$$, then $$f(n)$$ also is $$O(n^100)$$, as big O is an upper bound.
+One thing to note is if, as an example, an algorithm grows at the speed of $$f(n) = O(n^3)$$, then $$f(n)$$ also is $$O(n^{100})$$, as big O is an upper bound.
 
 Although $$O(f(n))$$ is a set, if $$g(n)$$ is contained within it, it is denoted $$g(n) = O(f(n))$$.
 
@@ -50,24 +50,28 @@ From here, we can make a clearer definition of big O notation and the other func
 
 > Let $$n_O$$ be a practical lower bound of $$n$$,
 
-> O(f(n)) is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$\lvert (g(n) \in O(f(n))) \rvert \le k \cdot f(n)$$
+> Let $$k$$ be a non-zero integer constant.
 
-> Similarly, $$\Omega(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$(g(n) \in O(f(n))) \ge k \cdot f(n)$$.
+> $$O(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a lower bound of $$k \cdot f(n)$$
 
-> $$\Theta(f(n))$$ is the set of expressions $$g(n)$$ such that, given two constant factors $$k$$ and $$k'$$, $$(g(n) \in O(f(n))) \le k \cdot f(n) \le k' \cdot g(n)$$.
+> $$\Omega(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a upper bound of $$k \cdot f(n)$$
+
+> $$\Theta(f(n))$$ is the set of expressions $$g(n)$$ such that, given two constant factors $$k$$ and $$k'$$, $$f(n)$$ is between $$k \cdot g(n)$$ and $$k' \cdot g(n)$$.
 
 Written more formally, you can define this with limits as [\[2\]](#leighton):
 
-$$O(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \neq \infty\}$$
+$$O(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \le k\}$$
 
-$$\Omega(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \neq 0\}$$
+$$\Omega(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \ge k\}$$
 
-$$\Theta(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \neq 0, \infty\}$$
+$$\Theta(f(n)) = \{g(n) \mid \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = k\}$$
+
+where $$k$$ is defined as the constant factor in the previous definitions.
 
 Another thing to note here is that big Theta notation here has the tightest bounds of the two, requiring $$f(n)$$ to grow the same rate $$g(n)$$.
 
 ## Big O in computer science
-In mathematics, big O (and Theta and Omega) are used to define the asymptotic complexity of a function, or how fast it grows. In computer science though, its often used to analyze how the running time of an algorithm grows as the input **size** grows. A common misconception is that the indeterminate is the value. As an example, consider this algorithm:
+In mathematics, big O (and Theta and Omega) are used to define the asymptotic complexity of a function, or how fast it grows. Within computer science and analysis of algorithms, its often used to analyze how the running time of an algorithm grows as the input **size** grows. A common misconception is that the indeterminate is the value. As an example, consider this algorithm:
 
 {% highlight python %}
 def multiply(a: int, b: int):
@@ -77,7 +81,7 @@ def multiply(a: int, b: int):
     return out
 {% endhighlight %}
 
-At first glance, ignoring the additional complexity from the addition and resizing from the bigint logic, the time complexity seems to be $$\Theta(n)$$, where $$n$$ is $$b$$. However, the  time complexity is actually $$\Theta(2^n)$$, as $$n$$ is the *size*, not value of $$b$$. Accounting for the addition, the time complexity turns into $$\Theta(2^n \times m)$$, where $$m$$ is the size of $$a$$.
+At first glance, ignoring the additional complexity from the addition and resizing from the bigint logic, the running time seems to grow linearly as $$b$$ grows, or $$O(n)$$. However, in analysis of algorithms, the indeterminate represents the size, not the value. Usually, the size is defined in bits, $$n = log_2(b)$$, therefore the time complexity is $$O(2^n)$$.
 
 Another thing to note is that although it determines the asymptotic complexity of an algorithm, a "better" asymptotic complexity does not necessarily mean an increase in speed. Asymptotically optimal algorithms exist that are practically unlikely to be used, called [galactic algorithms](https://en.wikipedia.org/wiki/Galactic_algorithm).
 
