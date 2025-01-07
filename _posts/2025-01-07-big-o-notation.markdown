@@ -52,17 +52,17 @@ From here, we can make a clearer definition of big O notation and the other func
 
 > Let $$k$$ be a non-zero integer constant.
 
-> $$O(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a lower bound of $$k \cdot f(n)$$ and $$n_O \le n$$
+> $$O(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is an upper bound of $$k \cdot f(n)$$ and $$n_O \le n$$
 
-> $$\Omega(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a upper bound of $$k \cdot f(n)$$ and $$n_O \le n$$
+> $$\Omega(f(n))$$ is the set of expressions $$g(n)$$ such that, given a constant factor $$k$$, $$g(n)$$ is a lower bound of $$k \cdot f(n)$$ and $$n_O \le n$$
 
 > $$\Theta(f(n))$$ is the set of expressions $$g(n)$$ such that, given two constant factors $$k$$ and $$k'$$, $$f(n)$$ is between $$k \cdot g(n)$$ and $$k' \cdot g(n)$$ and $$n_O \le n$$
 
 An alternative definition written with limits [\[2\]](#leighton) is:
 
-$$O(f(n)) = \{g(n) \mid \limsup\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} \le k\}$$
+$$O(f(n)) = \{g(n) \mid \limsup\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} \ge k\}$$
 
-$$\Omega(f(n)) = \{g(n) \mid \liminf\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} \ge k\}$$
+$$\Omega(f(n)) = \{g(n) \mid \liminf\limits_{n \rightarrow \infty} \frac{f(n)}{g(n)} \le k\}$$
 
 $$\Theta(f(n)) = O(f(n)) \cap \Omega(f(n))$$
 
