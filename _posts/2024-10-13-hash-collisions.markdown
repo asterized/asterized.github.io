@@ -6,7 +6,7 @@ categories: jekyll update
 katex: true
 ---
 
-I was overanalyzing two sum (as one does), trying to figure out its *actual* time complexity (\$O(n \log m)\$ where `m` is the largest number in `n`, as opposed to the liars who say its \$O(n)\$), when I stumbled upon [this comment](https://github.com/python/cpython/blob/ce740d46246b28bb675ba9d62214b59be9b8411e/Python/pyhash.c#L31-L32) in the CPython source code:
+I was overanalyzing two sum (as one does), trying to figure out its *actual* time complexity (\$O(n^2 \log m)\$ where `m` is the largest number in the set, as opposed to the liars who say its \$O(n)\$), when I stumbled upon [this comment](https://github.com/python/cpython/blob/ce740d46246b28bb675ba9d62214b59be9b8411e/Python/pyhash.c#L31-L32) in the CPython source code:
 {% highlight c %}
 /* For numeric types, the hash of a number x is based on the reduction
    of x modulo the prime P = 2**_PyHASH_BITS - 1.
@@ -108,9 +108,11 @@ do_lookup(PyDictObject *mp, PyDictKeysObject *dk, PyObject *key, Py_hash_t hash,
 }
 {% endhighlight %}
 
-The main part of this code is inside of the for loop. The code firstly uses `dictkeys_get_index`, which should have little to no collisions in most cases (except ours). After that, if a collision is found, it repeatedly "perturbs" the index `i` with the equation \$i * 5 + perturb + 1 \pmod {mask + 1}\$, where `mask` is defined as \$2^{\lceil\log_2(length)\rceil}\$ until it reaches the correct key, which it checks by using the function `check_lookup`. In our case, `i` starts at 1 (as `hash(i) = 1`), which after shifted by `PERTURB_SHIFT`, turns into 0, where it then iterates through all the members of the dict due to modular arithmetic (which only works because 5 is coprime to the modulus `mask`, which is defined as the smallest power of 2 larger than the size of the dictionary).
+The main part of this code is inside of the for loop. The code firstly uses `dictkeys_get_index`, which should have little to no collisions in most cases (except ours). After that, if a collision is found, it repeatedly "perturbs" the index `i` with the equation \$i * 5 + \text{perturb} + 1 \pmod {\text{mask} + 1}\$, where `mask` is defined as \$2^{\lceil\log_2(\text{length})\rceil}\$ until it reaches the correct key, which it checks by using the function `check_lookup`. In our case, `i` starts at 1 (as `hash(i) = 1`), which after shifted by `PERTURB_SHIFT`, turns into 0, where it then iterates through all the members of the dict due to modular arithmetic (which only works because 5 is coprime to the modulus `mask`, which is defined as the smallest power of 2 larger than the size of the dictionary).
 
 The perturbation goes through the hash table until it reaches the correct element, which takes a while until it reaches the correct element. This causes major slowdowns in tables with lots of collisions (like ours), causing a huge slowdown. Due to this perturbation strategy, the insertion order of the key also strongly affects the performance (\$p + 1\$ is approximately equal to a collision-less lookup, while \$840p + 1\$ takes about double the time \$420p + 1\$ takes).
+
+(UPDATE (2025-4-13): This also means the worst-case time complexity when searching (and by proxy updating) an element in a CPython dictionary is $O(n)$)
 
 ### Initialization
 Why, then, is initialization faster compared to its collision-less counterpart, then, compared to lookup, but slower than a collision-less initialization?
@@ -138,3 +140,6 @@ Will this ever actually affect *your* code? Maybe. *Most* of the time, you won't
 
 ## Disclaimer
 The info in this blog post has tried to be accurate, yet there may be some issues and mistakes. If you find any, mention me on Mastodon at somehybrid@hachyderm.io and I might have enough motivation to actually fix any of it.
+
+## Changelog
+- Update LaTeX formatting (2025-4-13)
