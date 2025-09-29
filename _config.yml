@@ -18,13 +18,12 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: somehybrid
+title: asterized
 description: >- # this means to ignore newlines until "baseurl:"
   rando online
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://somehybrid.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: somehybrid 
-mastodon_username: somehybrid@hachyderm.io # well this aint working
+url: "https://asterized.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: asterized 
 
 # Build settings
 theme: minima
