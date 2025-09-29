@@ -6,10 +6,6 @@ categories: jekyll update
 katex: true
 ---
 
-Talking about CS here - sorry to the 0.1 mathematicians reading this.
-
-Disclaimer: math (right after shooing away all the mathematicians lol),
-
 Big O notation is usually used to determine the "time complexity" of an algorithm, or the growth of the running time. But what does that actually mean?
 
 ## Preliminaries (skippable if you know these)
@@ -70,19 +66,6 @@ where $$k$$ is defined as the constant factor in the previous definitions.
 
 Another thing to note here is that big Theta notation here has the tightest bounds of the two, requiring $$f(n)$$ to grow the same rate $$g(n)$$.
 
-## Big O in computer science
-In mathematics, big O (and Theta and Omega) are used to define the asymptotic complexity of a function, or how fast it grows. Within computer science and analysis of algorithms, its often used to analyze how the running time of an algorithm grows as the input **size** grows. A common misconception is that the indeterminate is the value. As an example, consider this algorithm:
-
-{% highlight python %}
-def multiply(a: int, b: int):
-    out = 0
-    for i in range(b):
-        out += a
-    return out
-{% endhighlight %}
-
-At first glance, ignoring the additional complexity from the addition and resizing from the bigint logic, the running time seems to grow linearly as $$b$$ grows, or $$T(n) = O(n)$$. However, in analysis of algorithms, the indeterminate represents the size, not the value. Usually, the size is defined in the size in bits of the input, $$n = log_2(b)$$, therefore the time complexity is $$T(n) = O(2^n)$$.
-
 Another thing to note is that although it determines the asymptotic complexity of an algorithm, a "better" asymptotic complexity does not necessarily mean an increase in speed. Asymptotically optimal algorithms exist that are practically unlikely to be used, called [galactic algorithms](https://en.wikipedia.org/wiki/Galactic_algorithm).
 
 ## Conclusion
@@ -103,13 +86,9 @@ D. E. Knuth, "Big Omicron and big Omega and big Theta", *SIGACT News*, vol. 8, n
 T. Leighton, R. Rubenfeld, The Asymptotic Cheat Sheet [PDF document]. Available: <https://web.mit.edu/broder/Public/asymptotics-cheatsheet.pdf>.
 </a>
 
-## Disclaimer
-The info in this blog post has tried to be accurate, yet there may be some issues and mistakes. If you find any, mention me on Mastodon at somehybrid@hachyderm.io and I might have enough motivation to actually fix any of it.
-
-Also, I probably messed up some of the math here. Take everything with lots of seasonings.
-
 ## Changelog (woops me error)
 push first, proofread after
 
 2025-01-07 (can you really believe its 2025? almost wrote 2022): fix markup errors, fix wording in big O in CS, make definiitions clearer, fix typos, fix definition of limits.
 2025-01-07 (again xd): fix typo (my space bar is painnnnnnn)
+2025-09-29: new username who dis
