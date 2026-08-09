@@ -8,7 +8,7 @@ katex: false
 
 I happened to publish a package recently ([check it out if you wish](https://pypi.org/project/voprf/)), and because I like statistics, I decided to check the download statistics of the package a bit later through [PyPI Stats](https://pypistats.org), and saw:
 
-![Download quantity of a package. Download numbers stayed extremely low (<15 except initial release date) until 2026-08-07, where downloads peaked to 3,411 and went down to 1,673 the day after](/assets/stats-1.png)
+![Download quantity of a package. Download numbers stayed extremely low (<15 except initial release date) until 2026-08-07, where downloads peaked to 3,411 and went down to 1,673 the day after](/assets/images/stats-1.png)
 
 Woah, that's weird. Why would that be?
 
