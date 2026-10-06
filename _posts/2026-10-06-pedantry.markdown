@@ -1,0 +1,29 @@
+---
+layout: post
+title:  "C (technically) isn't faster than Python"
+date:   2026-10-06 11:40:19
+categories: jekyll update
+katex: false
+---
+
+Hi, it's time to do some pedantry.
+
+A common idea that floats around is that "C is faster than Python" or "Rust is faster than Java" or something along those lines, along with nice graphs and numbers showing how identical programs take 500,000,000,000 times longer in {insert language} compared to {other language}. However, if you really wanna split hairs, that isnt true.
+
+## Useless pedantry
+
+What is a language, in the sense that we say something is a "programming language"? Wikipedia defines, a [formal language](https://en.wikipedia.org/wiki/Formal_language) as "a set of strings whose symbols are taken from a set called 'alphabet'". An alphabet here isn't necessarily characters (or digits), but could also be identifiers and such. What does this have to do about comparing the speed of programming languages? Well, programming languages are formal languages, and you cannot compare the speed of "sets". Therefore, C, being a language, is [just as fast as](https://en.wikipedia.org/wiki/Vacuous_truth) Python.
+
+What does it (usually) mean when people say one language is faster than another then? They're comparing the performance of programming language *implementations*, such as the compiler and the interpreter, which are separate from the language itself. An example of a C implementation is the GNU C compiler, while an example of a Python implementation is the CPython interpreter.
+
+## Slightly less useless pedantry because I have to make this post longer
+
+Ultimately, these comparisons are of the implementations of languages, not languages themselves, however, for example, the CPython interpreter isn't the only implementation of the Python formal language. The Python.org site has a small collection of [alternative Python implementations](https://www.python.org/download/alternatives/), and alternative implementations include [PyPy](https://pypy.org/) (which is in many cases faster than CPython), [MicroPython](https://micropython.org/) (which is what is generally used when people write Python code on microcontrollers), [IronPython](https://ironpython.net/), and [RustPython](https://rustpython.github.io/). To be even more pedantic, these languages are technically not Python as CPython serves as the "canonical" Python implementation (meaning a Python program is anything that compiles (yes, compiles, you read that right) and runs properly on CPython), and there may be some obscure edge cases where some of these don't fall under that, but, because this is slightly *less* useless pedantry, I'm ignoring that for now. The vast majority of these comparisons (with some minor exceptions) only focus on a few (or even one) implementation of a language, being GCC and clang for C(++) and CPython for Python, ignoring the others.
+
+(also this means that GCC, clang, and ISO C are all different languages)
+
+Another point to be made is that in some cases, you can't directly compare languages because the "proper" way to write them leads to different results. "Good" Rust code, as an example (taking the original LLVM Rust compiler, there's one with a GNU Compiler Collection (GCC, its all very confusing) backend), is difficult to compare with "good" C code, as they both look vastly different, especially at large scales of code, which these comparisons rarely do.
+
+## Conclusion
+
+use whatever language you want who do you think i am the language police?
